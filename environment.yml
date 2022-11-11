@@ -1,0 +1,13 @@
+name: image_recognition
+dependencies:
+  - python
+  - pip
+  - pylint
+  - cython
+  - pip:
+    - numpy
+    - scikit-learn
+    - torch
+    - torchvision
+    - pandas
+    - matplotlib
