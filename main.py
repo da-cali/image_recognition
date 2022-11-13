@@ -16,11 +16,11 @@ class Net(nn.Module):
         hidden_2_size = 800
         self.fc1 = nn.Linear(28*28, hidden_1_size)
         self.fc2 = nn.Linear(hidden_1_size, hidden_2_size)
-        self.fc3 = nn.Linear(hidden_2_size,10)
+        self.fc3 = nn.Linear(hidden_2_size, 10)
         self.droput = nn.Dropout(0.5)
         
     def forward(self,input):
-        output = input.view(-1,28*28)
+        output = input.view(-1, 28*28)
         output = F.relu(self.fc1(output))
         output = self.droput(output)
         output = F.relu(self.fc2(output))
@@ -36,7 +36,7 @@ def train(model, train_loader, optimizer, epoch):
     for batch_index, (data, labels) in enumerate(train_loader):
         optimizer.zero_grad()
         output = model(data)
-        loss = F.cross_entropy(output,labels)
+        loss = F.cross_entropy(output, labels)
         loss.backward()
         optimizer.step()
         if batch_index % log_interval == 0:
@@ -65,7 +65,7 @@ def test(model, test_loader):
 
 # Initialize network.
 model = Net()
-optimizer = torch.optim.SGD(model.parameters(),lr=0.1)
+optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
 
 
 # Load dataset and prepare loaders.
@@ -102,7 +102,7 @@ for batch in range(10):
          +f'({100. * correct / batch_size:.0f}%).\n')
     image = plt.figure(figsize=(40, 10))
     for i in range(batch_size):
-        handwritten_number = image.add_subplot(2, 10, i+1, xticks=[], yticks=[])
+        handwritten_number = image.add_subplot(2, 10, i + 1, xticks=[], yticks=[])
         handwritten_number.imshow(np.squeeze(data[i]), cmap='gray')
         handwritten_number.set_title(
             f'TRUE: {str(labels[i].item())} vs NET: {predicions[0][i][0]}')
