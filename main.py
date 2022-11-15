@@ -99,11 +99,11 @@ for batch in range(10):
         predicions.append(prediction)
         correct += prediction.eq(labels.view_as(prediction)).sum().item()
     print(f'Batch {batch}. Accuracy: {correct}/{batch_size} '
-         +f'({100. * correct / batch_size:.0f}%).\n')
+          + f'({100. * correct / batch_size:.0f}%).\n')
     image = plt.figure(figsize=(40, 10))
     for i in range(batch_size):
         handwritten_number = image.add_subplot(2, 10, i + 1, xticks=[], yticks=[])
         handwritten_number.imshow(np.squeeze(data[i]), cmap='gray')
         handwritten_number.set_title(
             f'TRUE: {str(labels[i].item())} vs NET: {predicions[0][i][0]}')
-    image.savefig(f'images/{str(batch)}')
+    image.savefig(f'images/batch{str(batch)}')
