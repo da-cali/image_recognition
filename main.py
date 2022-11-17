@@ -30,8 +30,7 @@ class Net(nn.Module):
 
 
 # Training algorithm.
-def train(model, train_loader, optimizer, epoch):
-    log_interval = 100
+def train(model, train_loader, optimizer, epoch, log_interval=100):
     model.train()
     for batch_index, (data, labels) in enumerate(train_loader):
         optimizer.zero_grad()
